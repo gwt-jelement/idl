@@ -4,8 +4,10 @@
 
 // https://url.spec.whatwg.org/#interface-urlsearchparams
 
+typedef (sequence<sequence<USVString>> or record<USVString, USVString> or USVString) URLSearchParamsInit;
+
 [
-    Constructor(optional (sequence<sequence<USVString>> or record<USVString, USVString> or USVString) init = ""),
+    Constructor(optional URLSearchParamsInit init = ""),
     Exposed=(Window,Worker),
     RaisesException=Constructor
 ] interface URLSearchParams {

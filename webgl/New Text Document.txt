@@ -1,0 +1,20 @@
+/**
+ * Missing WebGL Types
+ * https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Types
+ */
+
+
+typedef unsigned long  GLenum;
+typedef boolean        GLboolean;
+typedef unsigned long  GLbitfield;
+typedef byte           GLbyte;         
+typedef short          GLshort;
+typedef long           GLint;
+typedef long           GLsizei;
+typedef long long      GLintptr;
+typedef long long      GLsizeiptr;
+typedef octet          GLubyte;        
+typedef unsigned short GLushort;
+typedef unsigned long  GLuint;
+typedef unrestricted float GLfloat;
+typedef unrestricted float GLclampf;

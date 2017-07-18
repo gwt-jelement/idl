@@ -1,0 +1,5 @@
+// https://www.w3.org/TR/html5/webappapis.html#eventhandler
+
+[TreatNonCallableAsNull]
+callback EventHandlerNonNull = any (Event event);
+typedef EventHandlerNonNull? EventHandler;

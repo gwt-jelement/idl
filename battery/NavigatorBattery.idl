@@ -5,3 +5,4 @@
 partial interface Navigator {
     [CallWith=ScriptState] Promise getBattery();
 };
+	
