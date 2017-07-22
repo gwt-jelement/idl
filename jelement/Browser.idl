@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-partial interface Window {
+interface Browser {
     static attribute HTMLDocument document;
     static attribute Location location;
     static attribute Navigator navigator;
