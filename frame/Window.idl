@@ -151,9 +151,7 @@
 
     // Console API
     // https://console.spec.whatwg.org/#console-interface
-    // [Replaceable] readonly attribute Console console;
-    // Console is installed by v8 inspector when context is created
-    // and is left commented here just for documentation.
+    [Replaceable] readonly attribute Console console;
 
     // Compatibility
     // https://compat.spec.whatwg.org/#windoworientation-interface
