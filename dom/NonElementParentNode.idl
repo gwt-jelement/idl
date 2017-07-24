@@ -8,5 +8,5 @@
     LegacyTreatAsPartialInterface,
     NoInterfaceObject // Always used on target of 'implements'
 ] interface NonElementParentNode {
-    [PerWorldBindings] Element? getElementById(DOMString elementId);
+    [PerWorldBindings, GenericReturn] Element? getElementById(DOMString elementId);
 };

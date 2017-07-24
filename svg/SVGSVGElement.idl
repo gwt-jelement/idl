@@ -50,7 +50,7 @@ interface SVGSVGElement : SVGGraphicsElement {
     [Measure] SVGTransform createSVGTransform();
     [Measure] SVGTransform createSVGTransformFromMatrix(SVGMatrix matrix);
 
-    [Measure] Element getElementById(DOMString elementId);
+    [Measure, GenericReturn] Element getElementById(DOMString elementId);
 
     [MeasureAs=SVGSVGElementSuspendRedraw] unsigned long suspendRedraw(unsigned long maxWaitMilliseconds);
     [MeasureAs=SVGSVGElementUnsuspendRedraw] void unsuspendRedraw(unsigned long suspendHandleId);
