@@ -44,6 +44,6 @@
 
     // [Unscopable] Element? query(DOMString relativeSelectors);
     // [NewObject, Unscopable] Elements queryAll(DOMString relativeSelectors);
-    [RaisesException] Element? querySelector(DOMString selectors);
+    [RaisesException, GenericReturn] Element? querySelector(DOMString selectors);
     [NewObject, RaisesException] NodeList querySelectorAll(DOMString selectors);
 };
