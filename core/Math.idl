@@ -1,0 +1,65 @@
+/*
+ * Copyright 2017 Abed Tony BenBrahim <tony.benrahim@10xdev.com>
+ *     and Gwt-JElement project contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+interface Math{
+
+    const double E = 2.718281828459045;
+    const double LN2 = 0.6931471805599453;
+    const double LN10 = 2.302585092994046;
+    const double LOG2E = 1.4426950408889634;
+    const double LOG10E = 0.4342944819032518;
+    const double PI = 3.141592653589793;
+    const double SQRT1_2 = 0.7071067811865476;
+    const double SQRT2 =1.4142135623730951;
+
+    static double abs(double x);
+    static double acos(double x);
+    static double acosh(double x);
+    static double asin(double x);
+    static double asinh(double x);
+    static double atan(double x);
+    static double atanh(double x);
+    static double atan2(double y, double x);
+    static double cbrt(double x);
+    static double ceil(double x);
+    static double clz32(double x);
+    static double cos(double x);
+    static double cosh(double x);
+    static double exp(double x);
+    static double expm1(double x);
+    static double floor(double x);
+    static double fround(double x);
+    static double hypot(double... x);
+    static double imul(double x, double y);
+    static double log(double x);
+    static double log1p(double x);
+    static double log10(double x);
+    static double log2(double x);
+    static double max(double... x);
+    static double min(double... x);
+    static double pow(double x, double y);
+    static double random();
+    static double round(double x);
+    static double sign(double x);
+    static double sin(double x);
+    static double sinh(double x);
+    static double sqrt(double x);
+    static double tan(double x);
+    static double tanh(double x);
+    static String toSource();
+    static double trunc(double x);
+};
