@@ -1,0 +1,28 @@
+[JsTypeName(window)]
+interface Browser{
+    static readonly attribute Navigator navigator;
+    static readonly attribute Window window;
+    static readonly attribute HTMLDocument document;
+    static readonly attribute Location location;
+    static readonly attribute Window self;
+    static readonly attribute Window top;
+    static readonly attribute Console console;
+    static readonly attribute double Infinity;
+    static readonly attribute double NaN;
+    static readonly attribute object undefined;
+    [JsPropertyName(Math)] static readonly attribute Math JsMath;
+    static object eval(String code);
+    static String uneval(object value);
+    static boolean isFinite(object value);
+    static boolean isNaN(object value);
+    static double parseFloat(object value);
+    static int parseInt(String value, int radix);
+    static String decodeURI(String value);
+    static String decodeURIComponent(String component);
+    static String encodeURI(String uri);
+    static String encodeURIComponent(String uriComponent);
+    [Deprecated] static String escape(String value);
+    [Deprecated] static String unescape(String value);
+};
+
+    
