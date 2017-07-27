@@ -1,0 +1,91 @@
+/*
+ * Copyright 2017 Abed Tony BenBrahim <tony.benrahim@10xdev.com>
+ *     and Gwt-JElement project contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+enum LocaleMatchingAlgorithm {
+    "lookup",
+    "best fit"
+};
+
+enum LocaleFormatMatchingAlgorithm {
+    "basic",
+    "best fit"
+};
+
+dictionary DateLocaleOptions{
+    LocaleMatchingAlgorithm localeMatcher;
+    DOMString timeZone;
+    boolean hour12;
+    LocaleFormatMatchingAlgorithm formatMatcher;
+};
+
+[Constructor(),
+ Constructor(long value),
+ Constructor(DOMString dateString),
+ Constructor(any year, any month, optional any date, optional any hours, optional any minutes, optional any seconds, optional any milliseconds)
+interface Date{
+    static long now();
+    static Date parse(DOMString dateString);
+    static long UTC(any year, any month, optional any date, optional any hours, optional any minutes, optional any seconds, optional any milliseconds);
+    int getDate();
+    int getDay();
+    int getFullYear();
+    int getHours();
+    int getMilliseconds();
+    int getMinutes();
+    int getMonth();
+    int getSeconds();
+    int getTime();
+    int getTimezoneOffset();
+    int getUTCDate();
+    int getUTCDay();
+    int getUTCFullYear();
+    int getUTCHours();
+    int getUTCMilliseconds();
+    int getUTCMinutes();
+    int getUTCMonth();
+    int getUTCSeconds();
+    [Deprecated] int getYear();
+    long setDate(int day);
+    long setFullYear(int year, optional int month, optional int day);
+    long setHours(int hours, optional int minutes, optional int seconds, optional int milliseconds);
+    long setMilliseconds(int milliseconds);
+    long setMinutes(int minutes, optional int seconds, optional int milliseconds);
+    long setMonth(int month, optional int day);
+    long setSeconds(int seconds, optional int milliseconds);
+    long setTime(long time);
+    long setUTCDate(int day);
+    long setUTCFullYear(int year, optional int month, optional int day);
+    long setUTCHours(int hours, optional int minutes, optional int seconds, optional int milliseconds);
+    long setUTCMilliseconds(int milliseconds);
+    long setUTCMinutes(int minutes, optional int seconds, optional int milliseconds);
+    long setUTCMonth(int month, optional int day);
+    long setUTCSeconds(int seconds, optional int milliseconds);
+    [Deprecated] long setYear(int year);
+    DOMString toDateString();
+    DOMString toISOString();
+    DOMString toJSON();
+    [Deprecated] DOMString toGMTString();
+    DOMString toLocaleDateString(optional (DOMString or DomString[]) locales, optional DateLocaleOptions options);
+    [Deprecated] DOMString toLocaleFormat(DOMString formatString);
+    DOMString toLocaleString(optional (DOMString or DomString[]) locales, optional DateLocaleOptions options);
+    DOMString toLocaleTimeString(optional (DOMString or DomString[]) locales, optional DateLocaleOptions options);
+    [Deprecated] DOMString toSource();
+    DOMString toString();
+    DOMString toTimeString();
+    DOMString toUTCString();
+    long valueOf();
+};
