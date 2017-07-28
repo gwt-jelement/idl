@@ -5,8 +5,6 @@
 // https://fetch.spec.whatwg.org/#requestcredentials
 // Copied from modules/fetch/Request.idl because it's not accessible from core/
 // directory.
-// TODO(nhiroki): Consider how to reuse the existing enum.
-enum RequestCredentials { "omit", "same-origin", "include" };
 
 // https://drafts.css-houdini.org/worklets/#dictdef-workletoptions
 dictionary WorkletOptions {

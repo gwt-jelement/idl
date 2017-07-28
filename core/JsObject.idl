@@ -14,37 +14,42 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
- callback interface ObjectPropertyGetterFunction{
-    any getValue();
+[
+    GenericParameter(T)
+] callback interface ObjectPropertyGetterFunction{
+    [GenericSub(T)] any getValue();
  };
 
- callback interface ObjectPropertySetterFunction{
-    void setValue(any value);
+ [
+     GenericParameter(T)
+ ] callback interface ObjectPropertySetterFunction{
+    void setValue([GenericSub(T)] any value);
  };
 
-dictionary ObjectPropertyDescriptor{
+[
+    GenericParameter(T)
+] dictionary ObjectPropertyDescriptor{
     required boolean configurable;
     required boolean enumerable;
-    any value;
+    [GenericSub(T)] any value;
     boolean writable;
-    ObjectPropertyGetterFunction get;
-    ObjectPropertySetterFunction set;
+    [GenericParameter(T)] ObjectPropertyGetterFunction get;
+    [GenericParameter(T)] ObjectPropertySetterFunction set;
 };
 
 [
     Constructor(optional object value),
     JsTypeName(Object),
-    GenericType(T)
+    GenericParameter(T)
 ] interface JsObject {
     static JsObject assign(JsObject target, JsObject... sources);
     static JsObject create(JsObject proto, optional JsObject propertiesObject);
-    [GenericReturn] JsObject defineProperties([GenericType(T)] JsObject obj, [GenericType(ObjectPropertyDescriptor)] JsObject properties);
-    [GenericReturn] static JsObject defineProperty([GenericType(T)] JsObject obj, String propertyName, ObjectPropertyDescriptor descriptor);
+    [GenericReturn] JsObject defineProperties([GenericSub(T)] JsObject obj, [GenericParameter(ObjectPropertyDescriptor)] JsObject properties);
+    [GenericReturn] static JsObject defineProperty([GenericSub(T)] JsObject obj, String propertyName, [GenericParameter(?)]ObjectPropertyDescriptor descriptor);
     static sequence<sequence<any>> entries(JsObject obj);
-    [GenericReturn] static JsObject freeze([GenericType(T)]JsObject obj);
-    static ObjectPropertyDescriptor getOwnPropertyDescriptor(JsObject obj, String propertyName);
-    [GenericType(ObjectPropertyDescriptor)] static JsObject getOwnPropertyDescriptors(JsObject obj);
+    [GenericReturn] static JsObject freeze([GenericSub(T)] JsObject obj);
+    [GenericParameter(?)] static ObjectPropertyDescriptor getOwnPropertyDescriptor(JsObject obj, String propertyName);
+    [GenericParameter(ObjectPropertyDescriptor<?>)] static JsObject getOwnPropertyDescriptors(JsObject obj);
     static sequence<String> getOwnPropertyNames(JsObject obj);
     static sequence<Object> getOwnPropertySymbols(JsObject obj);
     static JsObject getPrototypeOf(JsObject obj);
@@ -54,9 +59,9 @@ dictionary ObjectPropertyDescriptor{
     static boolean isSealed(JsObject obj);
     static String[] keys(JsObject obj);
     static JsObject preventExtensions(JsObject obj);
-    [GenericReturn] static JsObject seal([GenericType(T)] JsObject seal);
+    [GenericReturn] static JsObject seal([GenericSub(T)] JsObject seal);
     static JsObject setPrototypeOf(JsObject obj, Object proto);
-    [GenericType(T)] static sequence<any> values([GenericType(T)] JsObject obj);
+    [GenericSub(T)] static sequence<any> values([GenericParameter(T)] JsObject obj);
 
     static attribute int length;
     static attribute JsObject prototype;
@@ -69,8 +74,8 @@ dictionary ObjectPropertyDescriptor{
 
     void __defineGetter__(String propertyName, ObjectPropertyGetterFunction func);
     void __defineSetter__(String propertyName, ObjectPropertySetterFunction func);
-    ObjectPropertyGetterFunction __lookupGetter__(String propertyName);
-    ObjectPropertySetterFunction __lookupSetter__(String propertyName);
+    [GenericParameter(?)] ObjectPropertyGetterFunction __lookupGetter__(String propertyName);
+    [GenericParameter(?)] ObjectPropertySetterFunction __lookupSetter__(String propertyName);
     boolean hasOwnProperty(String propertyName);
     boolean isPrototypeOf(JsObject obj);
     boolean propertyIsEnumerable(String propertyName);
@@ -79,7 +84,6 @@ dictionary ObjectPropertyDescriptor{
     any valueOf();
 
     //Function attributes and methods to break the cyclic inheritance
-
-
 };
+
 
