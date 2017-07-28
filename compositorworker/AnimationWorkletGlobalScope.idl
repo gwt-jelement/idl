@@ -7,5 +7,6 @@
     Global=(Worklet,AnimationWorklet),
     RuntimeEnabled=CompositorWorker
 ] interface AnimationWorkletGlobalScope : WorkletGlobalScope {
-    [RaisesException] void registerAnimator(DOMString name, Function animatorConstructor);
+        //FIXME has no chance of working: https://wicg.github.io/animation-worklet/#callbackdef-voidfunction
+        [RaisesException] void registerAnimator(DOMString name, Function animatorConstructor);
 };

@@ -14,9 +14,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+callback interface CallbackFunction{
+    any onInvoked(any... arguments);
+};
 
-// https://heycam.github.io/webidl/#Function
+[ Constructor(String functionBody),
+  Constructor(String args, String functionBody)]
+interface Function: JsObject{
+    static attribute Function caller;
+    static attribute String displayName;
+    static attribute int length;
+    static attribute String name;
+    static attribute JsObject prototype;
 
-callback Function = any (any... arguments);
-
-callback VoidFunction = void ();
+    any apply(object thisArg, optional sequence<any> arguments);
+    Function bind(object thisArg, any... arguments);
+    any call(object thisArg, any... arguments);
+    boolean isGenerator();
+};
