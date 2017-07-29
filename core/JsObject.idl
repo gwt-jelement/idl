@@ -66,9 +66,6 @@
     static attribute int length;
     static attribute JsObject prototype;
 
-    String toJSON(); //serializer();
-    String toString(); //stringifier;
-
     attribute JsObject __proto__;
     attribute Function constructor;
 
@@ -84,6 +81,14 @@
     any valueOf();
 
     //Function attributes and methods to break the cyclic inheritance
-};
+    static attribute String name;
+    static attribute Function caller;
+    [JavaName(apply_)] static any apply(object thisArg, optional sequence<any> arguments);
+    [JavaName(call_)] static any call(object thisArg, any... arguments);
+
+    // Special operations
+    stringifier;
+
+ };
 
 

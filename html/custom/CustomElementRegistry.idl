@@ -3,7 +3,8 @@
 // found in the LICENSE file.
 
 interface CustomElementRegistry {
+//    inherited
+//    any get(DOMString name);
     [CallWith=ScriptState, CEReactions, CustomElementCallbacks, RaisesException, MeasureAs=CustomElementRegistryDefine] void define(DOMString name, Function constructor, optional ElementDefinitionOptions options);
-    any get(DOMString name);
     [CallWith=ScriptState,RaisesException] Promise<void> whenDefined(DOMString name);
 };

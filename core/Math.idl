@@ -60,6 +60,5 @@ interface Math{
     static double sqrt(double x);
     static double tan(double x);
     static double tanh(double x);
-    static String toSource();
     static double trunc(double x);
 };

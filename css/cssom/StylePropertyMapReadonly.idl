@@ -3,11 +3,13 @@
 // found in the LICENSE file.
 
 [
-    Exposed(Window CSSTypedOM, PaintWorklet CSSPaintAPI)
+    Exposed(Window CSSTypedOM, PaintWorklet CSSPaintAPI), GenericExtend(CSSStyleValue)
 ] interface StylePropertyMapReadonly {
-    [RaisesException] CSSStyleValue? get(DOMString property);
+    // inherited
+    //[RaisesException] CSSStyleValue? get(DOMString property);
     [RaisesException] sequence<CSSStyleValue> getAll(DOMString property);
-    [RaisesException] boolean has(DOMString property);
+    // inherited
+    //[RaisesException] boolean has(DOMString property);
     iterable<DOMString, (CSSStyleValue or sequence<CSSStyleValue>)>;
     sequence<DOMString> getProperties();
 };
