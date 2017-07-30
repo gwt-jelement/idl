@@ -11,6 +11,7 @@ interface Browser{
     static readonly attribute double NaN;
     static readonly attribute object undefined;
     [JsPropertyName(Math)] static readonly attribute Math JsMath;
+    static readonly attribute JSONImpl JSON;
     static object eval(String code);
     static String uneval(object value);
     static boolean isFinite(object value);
