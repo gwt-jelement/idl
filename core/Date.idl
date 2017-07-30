@@ -48,7 +48,7 @@ interface Date{
     int getMinutes();
     int getMonth();
     int getSeconds();
-    int getTime();
+    long getTime();
     int getTimezoneOffset();
     int getUTCDate();
     int getUTCDay();
