@@ -34,7 +34,7 @@ interface ArrayBufferView {
  Constructor(Int8Array array),
  Constructor(sequence<byte> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
-] interface Int8Array {
+] interface Int8Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
   getter byte get(unsigned long index);
@@ -43,7 +43,6 @@ interface ArrayBufferView {
   void set(sequence<byte> array, optional unsigned long offset);
   Int8Array subarray(long begin, optional long end);
 };
-Int8Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -51,7 +50,7 @@ Int8Array implements ArrayBufferView;
  Constructor(sequence<octet> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Uint8Array {
+interface Uint8Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
   getter octet get(unsigned long index);
@@ -60,7 +59,6 @@ interface Uint8Array {
   void set(sequence<octet> array, optional unsigned long offset);
   Uint8Array subarray(long begin, optional long end);
 };
-Uint8Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -68,7 +66,7 @@ Uint8Array implements ArrayBufferView;
  Constructor(sequence<octet> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Uint8ClampedArray {
+interface Uint8ClampedArray: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
   getter octet get(unsigned long index);
@@ -77,7 +75,6 @@ interface Uint8ClampedArray {
   void set(sequence<octet> array, optional unsigned long offset);
   Uint8ClampedArray subarray(long begin, optional long end);
 };
-Uint8ClampedArray implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -85,7 +82,7 @@ Uint8ClampedArray implements ArrayBufferView;
  Constructor(sequence<short> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Int16Array {
+interface Int16Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 2;
   readonly attribute unsigned long length;
   getter short get(unsigned long index);
@@ -94,7 +91,6 @@ interface Int16Array {
   void set(sequence<short> array, optional unsigned long offset);
   Int16Array subarray(long begin, optional long end);
 };
-Int16Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -102,7 +98,7 @@ Int16Array implements ArrayBufferView;
  Constructor(sequence<unsigned short> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Uint16Array {
+interface Uint16Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 2;
   readonly attribute unsigned long length;
   getter unsigned short get(unsigned long index);
@@ -111,7 +107,6 @@ interface Uint16Array {
   void set(sequence<unsigned short> array, optional unsigned long offset);
   Uint16Array subarray(long begin, optional long end);
 };
-Uint16Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -119,7 +114,7 @@ Uint16Array implements ArrayBufferView;
  Constructor(sequence<long> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Int32Array {
+interface Int32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
   getter long get(unsigned long index);
@@ -128,7 +123,6 @@ interface Int32Array {
   void set(sequence<long> array, optional unsigned long offset);
   Int32Array subarray(long begin, optional long end);
 };
-Int32Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -136,7 +130,7 @@ Int32Array implements ArrayBufferView;
  Constructor(sequence<unsigned long> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Uint32Array {
+interface Uint32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
   getter unsigned long get(unsigned long index);
@@ -145,7 +139,6 @@ interface Uint32Array {
   void set(sequence<unsigned long> array, optional unsigned long offset);
   Uint32Array subarray(long begin, optional long end);
 };
-Uint32Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -153,7 +146,7 @@ Uint32Array implements ArrayBufferView;
  Constructor(sequence<float> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Float32Array {
+interface Float32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
   getter unrestricted float get(unsigned long index);
@@ -162,7 +155,6 @@ interface Float32Array {
   void set(sequence<unrestricted float> array, optional unsigned long offset);
   Float32Array subarray(long begin, optional long end);
 };
-Float32Array implements ArrayBufferView;
 
 [
  Constructor(unsigned long length),
@@ -170,7 +162,7 @@ Float32Array implements ArrayBufferView;
  Constructor(sequence<double> array),
  Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long length)
 ]
-interface Float64Array {
+interface Float64Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 8;
   readonly attribute unsigned long length;
   getter unrestricted double get(unsigned long index);
@@ -179,10 +171,9 @@ interface Float64Array {
   void set(sequence<unrestricted double> array, optional unsigned long offset);
   Float64Array subarray(long begin, optional long end);
 };
-Float64Array implements ArrayBufferView;
 
 [Constructor(ArrayBuffer buffer, optional unsigned long byteOffset, optional unsigned long byteLength)]
-interface DataView {
+interface DataView: ArrayBufferView {
   byte getInt8(unsigned long byteOffset);
   octet getUint8(unsigned long byteOffset);
   short getInt16(unsigned long byteOffset, optional boolean littleEndian);
@@ -200,4 +191,3 @@ interface DataView {
   void setFloat32(unsigned long byteOffset, float value, optional boolean littleEndian);
   void setFloat64(unsigned long byteOffset, double value, optional boolean littleEndian);
 };
-DataView implements ArrayBufferView;
