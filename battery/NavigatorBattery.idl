@@ -3,6 +3,5 @@
 // found in the LICENSE file.
 
 partial interface Navigator {
-    [CallWith=ScriptState] Promise getBattery();
-};
-	
+    [CallWith=ScriptState] Promise<BatteryManager> getBattery();
+    };
