@@ -14,6 +14,8 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
+import Js;
+
 partial class JsObject {
     @JsOverlay
     public final T get(String propertyName) {
@@ -24,19 +26,19 @@ partial class JsObject {
     public final T get(double index) {
         return Js.<T>get(this, index);
     }
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        @JsOverlay
-        public final $primitiveType get${display.capitalize($primitiveType)}(String propertyName) {
-            return Js.get${display.capitalize($primitiveType)}(this, propertyName);
-        }
+    @JsOverlay
+    public final $primitiveType get${display.capitalize($primitiveType)}(String propertyName) {
+        return Js.get${display.capitalize($primitiveType)}(this, propertyName);
+    }
 
-        @JsOverlay
-        public final $primitiveType get${display.capitalize($primitiveType)}(double index) {
-            return Js.get${display.capitalize($primitiveType)}(this, index);
-        }
-
+    @JsOverlay
+    public final $primitiveType get${display.capitalize($primitiveType)}(double index) {
+        return Js.get${display.capitalize($primitiveType)}(this, index);
+    }
     #end
+
     @JsOverlay
     public final long getLong(String propertyName) {
         return Js.getLong(this, propertyName);
@@ -56,19 +58,19 @@ partial class JsObject {
     public final void set(double index, T value) {
         Js.<T>set(this, index, value);
     }
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        @JsOverlay
-        public final void set(String propertyName, $primitiveType value) {
-            Js.<T>set(this, propertyName, value);
-        }
+    @JsOverlay
+    public final void set(String propertyName, $primitiveType value) {
+        Js.<T>set(this, propertyName, value);
+    }
 
-        @JsOverlay
-        public final void set(double index, $primitiveType value) {
-            Js.<T>set(this, index, value);
-        }
-
+    @JsOverlay
+    public final void set(double index, $primitiveType value) {
+        Js.<T>set(this, index, value);
+    }
     #end
+
     @JsOverlay
     public final void set(String propertyName, long value) {
         Js.set(this, propertyName, (double) value);
@@ -103,14 +105,14 @@ partial class JsObject {
     public final JsObject<T> with(String propertyName, T value) {
         return Js.<T>with(this, propertyName, value);
     }
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        @JsOverlay
-        public final JsObject<T> with(String propertyName, $primitiveType value) {
-            return Js.<T>with(this, propertyName, value);
-        }
-
+    @JsOverlay
+    public final JsObject<T> with(String propertyName, $primitiveType value) {
+        return Js.<T>with(this, propertyName, value);
+    }
     #end
+
     @JsOverlay
     public final JsObject<T> with(String propertyName, long value) {
         return Js.<T>with(this, propertyName, (double) value);

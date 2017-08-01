@@ -24,11 +24,11 @@ public class Js {
         return object;
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        public static native <T> JsObject<T> with(JsObject<T> object, String key, $primitiveType value)/*-{
-            object[key] = value;
-            return object;
-        }-*/;
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+    public static native <T> JsObject<T> with(JsObject<T> object, String key, $primitiveType value)/*-{
+        object[key] = value;
+        return object;
+    }-*/;
 
     #end
     public static <T> JsObject<T> with(JsObject<T> object, String key, long value) {
@@ -43,14 +43,14 @@ public class Js {
         object[index] = value;
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        public static native void set(JsObject object, String propertyName, $primitiveType value) /*-{
-            object[propertyName] = value;
-        }-*/;
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+    public static native void set(JsObject object, String propertyName, $primitiveType value) /*-{
+        object[propertyName] = value;
+    }-*/;
 
-        public static native <T> void set(JsObject<T> object, double index, $primitiveType value) /*-{
-            object[index] = value;
-        }-*/;
+    public static native <T> void set(JsObject<T> object, double index, $primitiveType value) /*-{
+        object[index] = value;
+    }-*/;
 
     #end
     public static void set(JsObject object, String propertyName, long value) {
@@ -70,14 +70,14 @@ public class Js {
         return object[index];
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
-        public static native $primitiveType get${display.capitalize($primitiveType)}(JsObject object, String propertyName) /*-{
-            return object[propertyName];
-        }-*/;
+    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+    public static native $primitiveType get${display.capitalize($primitiveType)}(JsObject object, String propertyName) /*-{
+        return object[propertyName];
+    }-*/;
 
-        public static native $primitiveType get${display.capitalize($primitiveType)}(JsObject object, double index) /*-{
-            return object[index];
-        }-*/;
+    public static native $primitiveType get${display.capitalize($primitiveType)}(JsObject object, double index) /*-{
+        return object[index];
+    }-*/;
 
     #end
 
