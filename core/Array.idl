@@ -1,0 +1,79 @@
+/*
+ * Copyright 2017 Abed Tony BenBrahim <tony.benrahim@10xdev.com>
+ *     and Gwt-JElement project contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+callback interface MapFunction{
+    any map(any arg);
+};
+
+callback interface PredicateFunction{
+    boolean test(Object element, long index, Array array); //REVISIT any
+};
+
+callback interface ArrayProc{
+    void invoke(any element, long index, Array array); //REVISIT any
+};
+
+callback interface MappingFunction{
+    any map(any element, long index, Array array);
+};
+
+callback interface ReducingFunction{
+    any reduce(any accumulator, any currentValue, long currentIndex, Array array);
+};
+
+callback interface CompareFunction{
+    long compare(any a, any b);
+};
+
+[Implements(ArrayLike)]
+interface Array {
+    readonly attribute long length;
+    static Array from(ArrayLike arrayLike, optional MapFunction mapFunction, optional Object thisArg);
+    static boolean isArray([AnyOverload] Object value);
+    static Array of([AnyOverload, NativeOverloads] Object... value);
+    Array concat([AnyOverload, NativeOverloads] Object... value);
+    Array copyWithin(long target, optional long start, optional long end);
+    //TODO entries
+    boolean every(PredicateFunction callback, optional Object thisArg);
+    Array fill([NativeOverloads] Object value, optional long start, optional long end);
+    Array filter(PredicateFunction predicate, optional Object thisArg);
+    Object find(PredicateFunction predicate, optional Object thisArg);
+    long findIndex(PredicateFunction predicate, optional Object thisArg);
+    void forEach(ArrayProc callback, optional Object thisArg);
+    boolean includes([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
+    long indexOf([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
+    String join(optional String separator);
+    //TODO keys
+    double lastIndexOf([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
+    Array map(MappingFunction mappingFunction, optional Object thisArg);
+    any pop();
+    double push([AnyOverload, NativeOverloads] Object... value);
+    any reduce(ReducingFunction reducingFunction, optional any initialValue);
+    any reduceRight(ReducingFunction reducingFunction, optional any initialValue);
+    Array reverse();
+    any shift();
+    Array slice(optional long start, optional long end);
+    boolean some(PredicateFunction predicate, optional Object thisArg);
+    Array sort(optional CompareFunction compareFunction);
+    Array splice(long start, optional long end, [NativeOverloads, AnyOverload] Object... value);
+    String toLocaleString(optional (String or sequence<String>) locales, optional LocaleOptions options);
+    String toSource();
+    String toString();
+    long unshift([NativeOverloads, AnyOverload] Object... value);
+    ValueIterator values();
+
+};
+

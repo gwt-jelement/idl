@@ -9,16 +9,14 @@ typedef (sequence<sequence<USVString>> or record<USVString, USVString> or USVStr
 [
     Constructor(optional URLSearchParamsInit init = ""),
     Exposed=(Window,Worker),
-    RaisesException=Constructor,
-    GenericExtend(USVString)
+    RaisesException=Constructor
 ] interface URLSearchParams {
     void append(USVString name, USVString value);
-//    inherited
-//    [ImplementedAs=deleteAllWithName] void delete(USVString name);
-//    USVString? get(USVString name);
-//    void set(USVString name, USVString value);
-//    boolean has(USVString name);
-//    stringifier;
+    [ImplementedAs=deleteAllWithName] void delete(USVString name);
+    USVString? get(USVString name);
+    void set(USVString name, USVString value);
+    boolean has(USVString name);
+    stringifier;
     sequence<USVString> getAll(USVString name);
 
     void sort();

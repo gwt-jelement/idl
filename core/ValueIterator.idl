@@ -14,21 +14,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-callback interface CallbackFunction{
-    any onInvoked(any... arguments);
+
+dictionary IteratorResult{
+    boolean done;
+    any value;
 };
 
-[ Constructor(String functionBody),
-  Constructor(String args, String functionBody)]
-interface Function: IsObject{
-    static attribute Function caller;
-    static attribute String displayName;
-    static attribute int length;
-    static attribute String name;
-    static attribute JsObject prototype;
-
-    any apply(object thisArg, optional sequence<any> arguments);
-    Function bind(object thisArg, any... arguments);
-    any call(object thisArg, any... arguments);
-    boolean isGenerator();
+interface ValueIterator{
+    IteratorResult next();
 };

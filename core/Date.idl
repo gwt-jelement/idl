@@ -15,23 +15,6 @@
  * the License.
  */
 
-enum LocaleMatchingAlgorithm {
-    "lookup",
-    "best fit"
-};
-
-enum LocaleFormatMatchingAlgorithm {
-    "basic",
-    "best fit"
-};
-
-dictionary DateLocaleOptions{
-    LocaleMatchingAlgorithm localeMatcher;
-    DOMString timeZone;
-    boolean hour12;
-    LocaleFormatMatchingAlgorithm formatMatcher;
-};
-
 [Constructor(),
  Constructor(long value),
  Constructor(DOMString dateString),
@@ -79,10 +62,10 @@ interface Date{
     DOMString toISOString();
     DOMString toJSON();
     [Deprecated] DOMString toGMTString();
-    DOMString toLocaleDateString(optional (DOMString or sequence<DOMString>) locales, optional DateLocaleOptions options);
+    DOMString toLocaleDateString(optional (DOMString or sequence<DOMString>) locales, optional LocaleOptions options);
     [Deprecated] DOMString toLocaleFormat(DOMString formatString);
-    DOMString toLocaleString(optional (DOMString or sequence<DOMString>) locales, optional DateLocaleOptions options);
-    DOMString toLocaleTimeString(optional (DOMString or sequence<DOMString>) locales, optional DateLocaleOptions options);
+    DOMString toLocaleString(optional (DOMString or sequence<DOMString>) locales, optional LocaleOptions options);
+    DOMString toLocaleTimeString(optional (DOMString or sequence<DOMString>) locales, optional LocaleOptions options);
     [Deprecated] DOMString toSource();
     DOMString toString();
     DOMString toTimeString();

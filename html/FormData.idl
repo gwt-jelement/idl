@@ -40,14 +40,13 @@ typedef (File or USVString) FormDataEntryValue;
     Exposed=(Window,Worker),
     LegacyInterfaceTypeChecking
 ] interface FormData {
-//    inherited
-//    boolean has(USVString name);
-//    [ImplementedAs=deleteEntry] void delete(USVString name);
-    [JavaName(get_)] FormDataEntryValue? get(USVString name);
+    boolean has(USVString name);
+    [ImplementedAs=deleteEntry] void delete(USVString name);
+    FormDataEntryValue? get(USVString name);
     void append(USVString name, USVString value);
     [CallWith=ScriptState] void append(USVString name, Blob value, optional USVString filename);
     sequence<FormDataEntryValue> getAll(USVString name);
-    [JavaName(set_)] void set(USVString name, USVString value);
-    [JavaName(set_)] void set(USVString name, Blob value, optional USVString filename);
+    void set(USVString name, USVString value);
+    void set(USVString name, Blob value, optional USVString filename);
     iterable<USVString, FormDataEntryValue>;
 };

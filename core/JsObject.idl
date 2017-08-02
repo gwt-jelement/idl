@@ -76,15 +76,15 @@
     boolean hasOwnProperty(String propertyName);
     boolean isPrototypeOf(JsObject obj);
     boolean propertyIsEnumerable(String propertyName);
-    String toLocaleString();
+    String toLocaleString(optional (String or sequence<String>) locales, optional LocaleOptions options);
     String toSource();
     any valueOf();
 
     //Function attributes and methods to break the cyclic inheritance
     static attribute String name;
     static attribute Function caller;
-    [JavaName(apply_)] static any apply(object thisArg, optional sequence<any> arguments);
-    [JavaName(call_)] static any call(object thisArg, any... arguments);
+    static any apply(object thisArg, optional sequence<any> arguments);
+    static any call(object thisArg, any... arguments);
 
     // Special operations
     stringifier;
