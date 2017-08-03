@@ -37,8 +37,8 @@ interface ArrayBufferView {
 ] interface Int8Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
-  getter byte get(unsigned long index);
-  setter void set(unsigned long index, byte value);
+  getter byte (unsigned long index);
+  setter void (unsigned long index, byte value);
   void set(Int8Array array, optional unsigned long offset);
   void set(sequence<byte> array, optional unsigned long offset);
   Int8Array subarray(long begin, optional long end);
@@ -53,8 +53,8 @@ interface ArrayBufferView {
 interface Uint8Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
-  getter octet get(unsigned long index);
-  setter void set(unsigned long index, octet value);
+  getter octet (unsigned long index);
+  setter void (unsigned long index, octet value);
   void set(Uint8Array array, optional unsigned long offset);
   void set(sequence<octet> array, optional unsigned long offset);
   Uint8Array subarray(long begin, optional long end);
@@ -69,8 +69,8 @@ interface Uint8Array: ArrayBufferView {
 interface Uint8ClampedArray: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 1;
   readonly attribute unsigned long length;
-  getter octet get(unsigned long index);
-  setter void set(unsigned long index, [Clamp] octet value);
+  getter octet (unsigned long index);
+  setter void (unsigned long index, [Clamp] octet value);
   void set(Uint8ClampedArray array, optional unsigned long offset);
   void set(sequence<octet> array, optional unsigned long offset);
   Uint8ClampedArray subarray(long begin, optional long end);
@@ -85,8 +85,8 @@ interface Uint8ClampedArray: ArrayBufferView {
 interface Int16Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 2;
   readonly attribute unsigned long length;
-  getter short get(unsigned long index);
-  setter void set(unsigned long index, short value);
+  getter short (unsigned long index);
+  setter void (unsigned long index, short value);
   void set(Int16Array array, optional unsigned long offset);
   void set(sequence<short> array, optional unsigned long offset);
   Int16Array subarray(long begin, optional long end);
@@ -101,8 +101,8 @@ interface Int16Array: ArrayBufferView {
 interface Uint16Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 2;
   readonly attribute unsigned long length;
-  getter unsigned short get(unsigned long index);
-  setter void set(unsigned long index, unsigned short value);
+  getter unsigned short (unsigned long index);
+  setter void (unsigned long index, unsigned short value);
   void set(Uint16Array array, optional unsigned long offset);
   void set(sequence<unsigned short> array, optional unsigned long offset);
   Uint16Array subarray(long begin, optional long end);
@@ -117,8 +117,8 @@ interface Uint16Array: ArrayBufferView {
 interface Int32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
-  getter long get(unsigned long index);
-  setter void set(unsigned long index, long value);
+  getter long (unsigned long index);
+  setter void (unsigned long index, long value);
   void set(Int32Array array, optional unsigned long offset);
   void set(sequence<long> array, optional unsigned long offset);
   Int32Array subarray(long begin, optional long end);
@@ -133,8 +133,8 @@ interface Int32Array: ArrayBufferView {
 interface Uint32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
-  getter unsigned long get(unsigned long index);
-  setter void set(unsigned long index, unsigned long value);
+  getter unsigned long (unsigned long index);
+  setter void (unsigned long index, unsigned long value);
   void set(Uint32Array array, optional unsigned long offset);
   void set(sequence<unsigned long> array, optional unsigned long offset);
   Uint32Array subarray(long begin, optional long end);
@@ -149,8 +149,8 @@ interface Uint32Array: ArrayBufferView {
 interface Float32Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 4;
   readonly attribute unsigned long length;
-  getter unrestricted float get(unsigned long index);
-  setter void set(unsigned long index, unrestricted float value);
+  getter unrestricted float (unsigned long index);
+  setter void (unsigned long index, unrestricted float value);
   void set(Float32Array array, optional unsigned long offset);
   void set(sequence<unrestricted float> array, optional unsigned long offset);
   Float32Array subarray(long begin, optional long end);
@@ -165,8 +165,8 @@ interface Float32Array: ArrayBufferView {
 interface Float64Array: ArrayBufferView {
   const unsigned long BYTES_PER_ELEMENT = 8;
   readonly attribute unsigned long length;
-  getter unrestricted double get(unsigned long index);
-  setter void set(unsigned long index, unrestricted double value);
+  getter unrestricted double (unsigned long index);
+  setter void (unsigned long index, unrestricted double value);
   void set(Float64Array array, optional unsigned long offset);
   void set(sequence<unrestricted double> array, optional unsigned long offset);
   Float64Array subarray(long begin, optional long end);
