@@ -128,5 +128,10 @@ public class Js {
     public static final <T> T cast(Object object){
         return (T) object;
     }
+
+    public static native boolean isUndefined(JsObject object, double index) /*-{
+        return object[index] === undefined;
+    }-*/;
+
 }
 

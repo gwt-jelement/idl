@@ -21,9 +21,11 @@
 
 // https://html.spec.whatwg.org/#the-htmloptionscollection-interface
 
+typedef (NodeList or Element) HTMLOptionsUnion;
+
 [
-    DependentLifetime
-] interface HTMLOptionsCollection : HTMLCollection {
+    DependentLifetime, GenericExtend(Node, HTMLOptionsUnion)
+] interface HTMLOptionsCollection : HTMLBaseCollection {
     // inherits item()
     [CEReactions, RaisesException=Setter] attribute unsigned long length; // shadows inherited length
     // FIXME: The spec has a legacycaller HTMLOptionElement? (DOMString name);
@@ -33,6 +35,7 @@
     attribute long selectedIndex;
     // FIXME: Neither of these getters are in the spec, and the
     // getters inherited from HTMLCollection always return an Element.
-    [ImplementedAs=item] getter Node (unsigned long index);
-    [ImplementedAs=namedGetter] getter (NodeList or Element)? namedItem(DOMString name);
+// inherited
+ //   [ImplementedAs=item] getter Node (unsigned long index);
+ //   [ImplementedAs=namedGetter] getter HTMLOptionsUnion namedItem(DOMString name);
 };

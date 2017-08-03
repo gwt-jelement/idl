@@ -22,10 +22,10 @@
 // https://dom.spec.whatwg.org/#interface-htmlcollection
 
 [
-    DependentLifetime, GenericExtend(Element, Element)
-] interface HTMLCollection: HTMLBaseCollection {
-// inherited
-//    readonly attribute unsigned long length;
-//    getter Element? item(unsigned long index);
-//    getter Element? namedItem(DOMString name);
+    DependentLifetime,
+    GenericParameter(T, U)
+] interface HTMLBaseCollection {
+    readonly attribute unsigned long length;
+    [GenericSub(T)] getter Object item(unsigned long index);
+    [GenericSub(U)] getter Object namedItem(DOMString name);
 };

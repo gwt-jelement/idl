@@ -21,11 +21,13 @@
 
 // https://html.spec.whatwg.org/#the-htmlformcontrolscollection-interface
 
+typedef (RadioNodeList or Element) FormControlsUnion;
+
 [
-    DependentLifetime
-] interface HTMLFormControlsCollection : HTMLCollection {
-    // inherits length and item()
-    [ImplementedAs=namedGetter] getter (RadioNodeList or Element)? namedItem(DOMString name); // shadows inherited namedItem()
-    // FIXME: This getter is not in the spec.
-    [ImplementedAs=item] getter Node (unsigned long index);
+    DependentLifetime, GenericExtend(Node, FormControlsUnion)
+] interface HTMLFormControlsCollection : HTMLBaseCollection {
+// inherited
+//    [ImplementedAs=namedGetter] getter (RadioNodeList or Element)? namedItem(DOMString name); // shadows inherited namedItem()
+//    FIXME: This getter is not in the spec.
+//    [ImplementedAs=item] getter Node (unsigned long index);
 };

@@ -16,7 +16,55 @@
 */
 package ${basePackage}.core;
 
-//Marker interface
-public interface ArrayLike {
-    double getLength();
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
+
+import java.util.Iterator;
+
+@JsType(isNative = true)
+public class ArrayLike<T> extends IsObject {
+
+    @JsProperty(name = "length")
+    public native double getLength();
+
+    @JsOverlay
+    public final T get(double index) {
+        return (T) Js.get(this.object(), index);
+    }
+
+    @JsOverlay
+    private final boolean isUndefined(double index) {
+        return Js.isUndefined(this.object(), index);
+    }
+
+    @JsOverlay
+    public final Iterable<T> iterable() {
+        return new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new Iterator<T>() {
+                    int currentIndex = 0;
+
+                    @Override
+                    public boolean hasNext() {
+                        while (currentIndex < getLength()) {
+                            if (!isUndefined(currentIndex)) {
+                                return true;
+                            }
+                            ++currentIndex;
+                        }
+                        return false;
+                    }
+
+                    @Override
+                    public T next() {
+                        T result = get(currentIndex);
+                        ++currentIndex;
+                        return result;
+                    }
+                };
+            }
+        };
+    }
 }
