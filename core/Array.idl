@@ -14,66 +14,80 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
+[GenericParameter(T,U)]
 callback interface MapFunction{
-    any map(any arg);
+    U map(T arg);
 };
 
-callback interface PredicateFunction{
-    boolean test(Object element, long index, Array array); //REVISIT any
+[
+    GenericParameter(T)
+] callback interface PredicateFunction{
+    boolean test([GenericSub(T)] Object element, long index, [GenericParameter(T)] Array array); //REVISIT any
 };
 
-callback interface ArrayProc{
-    void invoke(any element, long index, Array array); //REVISIT any
+[
+    GenericParameter(T)
+] callback interface ArrayProc{
+    void invoke([GenericSub(T)] any element, long index, [GenericParameter(T)] Array array); //REVISIT any
 };
 
-callback interface MappingFunction{
-    any map(any element, long index, Array array);
+[
+    GenericParameter(T, U)
+]callback interface MappingFunction{
+    [GenericSub(U)] any map([GenericSub(T)] any element, long index, Array array);
 };
 
-callback interface ReducingFunction{
-    any reduce(any accumulator, any currentValue, long currentIndex, Array array);
+[
+    GenericParameter(T, U)
+] callback interface ReducingFunction{
+    [GenericSub(U)] any reduce([GenericSub(U)] any accumulator, [GenericSub(T)] any currentValue, long currentIndex, [GenericParameter(T)] Array array);
 };
 
-callback interface CompareFunction{
-    long compare(any a, any b);
+[
+    GenericParameter(T)
+] callback interface CompareFunction{
+    long compare([GenericSub(T)] any a, [GenericSub(T)] any b);
 };
 
-[Implements(ArrayLike)]
-interface Array {
+[
+    GenericParameter(T)
+]interface Array {
     readonly attribute long length;
-    static Array from(ArrayLike arrayLike, optional MapFunction mapFunction, optional Object thisArg);
-    static boolean isArray([AnyOverload] Object value);
-    static Array of([AnyOverload, NativeOverloads] Object... value);
-    Array concat([AnyOverload, NativeOverloads] Object... value);
-    Array copyWithin(long target, optional long start, optional long end);
+    [GenericParameter(U)] static  Array from([GenericParameter(T)] ArrayLike arrayLike, [GenericParameter(T,U)] optional MapFunction mapFunction, optional Object thisArg);
+    static boolean isArray(Object value);
+    [GenericParameter(T)] static  Array of(Object... value);
+    [GenericParameter(T)] Array concat( [GenericSub(T)] Object... value);
+    [GenericParameter(T)] Array copyWithin(long target, optional long start, optional long end);
     //TODO entries
-    boolean every(PredicateFunction callback, optional Object thisArg);
-    Array fill([NativeOverloads] Object value, optional long start, optional long end);
-    Array filter(PredicateFunction predicate, optional Object thisArg);
-    Object find(PredicateFunction predicate, optional Object thisArg);
-    long findIndex(PredicateFunction predicate, optional Object thisArg);
-    void forEach(ArrayProc callback, optional Object thisArg);
-    boolean includes([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
-    long indexOf([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
+    boolean every([GenericParameter(T)] PredicateFunction callback, optional Object thisArg);
+    Array fill([GenericSub(T)] Object value, optional long start, optional long end);
+    Array filter([GenericParameter(T)] PredicateFunction predicate, optional Object thisArg);
+    [GenericSub(T)] Object find([GenericParameter(T)] PredicateFunction predicate, optional Object thisArg);
+    long findIndex([GenericParameter(T)] PredicateFunction predicate, optional Object thisArg);
+    void forEach([GenericParameter(T)] ArrayProc callback, optional Object thisArg);
+    boolean includes([GenericSub(T)] Object value, optional long fromIndex);
+    long indexOf([GenericSub(T)] Object value, optional long fromIndex);
     String join(optional String separator);
     //TODO keys
-    double lastIndexOf([NativeOverloads, AnyOverload] Object value, optional long fromIndex);
-    Array map(MappingFunction mappingFunction, optional Object thisArg);
+    double lastIndexOf([GenericSub(T)] Object value, optional long fromIndex);
+    [GenericParameter(U)]Array map([GenericParameter(T,U)] MappingFunction mappingFunction, optional Object thisArg);
     any pop();
-    double push([AnyOverload, NativeOverloads] Object... value);
-    any reduce(ReducingFunction reducingFunction, optional any initialValue);
-    any reduceRight(ReducingFunction reducingFunction, optional any initialValue);
+    double push([GenericSub(T)] Object... value);
+    [GenericSub(U)] any reduce([GenericParameter(T,U)]ReducingFunction reducingFunction, optional any initialValue);
+    [GenericSub(U)] any reduceRight([GenericParameter(T,U)] ReducingFunction reducingFunction, optional any initialValue);
     Array reverse();
     any shift();
     Array slice(optional long start, optional long end);
-    boolean some(PredicateFunction predicate, optional Object thisArg);
-    Array sort(optional CompareFunction compareFunction);
-    Array splice(long start, optional long end, [NativeOverloads, AnyOverload] Object... value);
+    boolean some([GenericParameter(T)]PredicateFunction predicate, optional Object thisArg);
+    Array sort([GenericParameter(T)] optional CompareFunction compareFunction);
+    Array splice(long start, optional long end, [GenericSub(T)] Object... value);
     String toLocaleString(optional (String or sequence<String>) locales, optional LocaleOptions options);
     String toSource();
     String toString();
-    long unshift([NativeOverloads, AnyOverload] Object... value);
+    long unshift([GenericSub(T)] Object... value);
     ValueIterator values();
-
+    [GenericSub(T)] getter Object (long index);
+    setter void (long index, [GenericSub(T)] Object value);
 };
 

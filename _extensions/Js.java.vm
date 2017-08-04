@@ -24,41 +24,41 @@ public class Js {
         return object;
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
     public static native <T> JsObject<T> with(JsObject<T> object, String key, $primitiveType value)/*-{
         object[key] = value;
         return object;
     }-*/;
 
-    #end
+#end
     public static <T> JsObject<T> with(JsObject<T> object, String key, long value) {
         return with(object, key, (double) value);
     }
 
-    public static native <T> void set(JsObject<T> object, String propertyName, T value) /*-{
-        object[propertyName] = value;
+    public static native <T> T set(JsObject<T> object, String propertyName, T value) /*-{
+        return object[propertyName] = value;
     }-*/;
 
-    public static native <T> void set(JsObject<T> object, double index, T value) /*-{
-        object[index] = value;
+    public static native <T> T set(JsObject<T> object, double index, T value) /*-{
+        return object[index] = value;
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
-    public static native void set(JsObject object, String propertyName, $primitiveType value) /*-{
-        object[propertyName] = value;
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
+    public static native $primitiveType set(JsObject object, String propertyName, $primitiveType value) /*-{
+        return object[propertyName] = value;
     }-*/;
 
-    public static native <T> void set(JsObject<T> object, double index, $primitiveType value) /*-{
-        object[index] = value;
+    public static native <T> $primitiveType set(JsObject<T> object, double index, $primitiveType value) /*-{
+        return object[index] = value;
     }-*/;
 
-    #end
-    public static void set(JsObject object, String propertyName, long value) {
-        set(object, propertyName, (double) value);
+#end
+    public static long set(JsObject object, String propertyName, long value) {
+        return (long) set(object, propertyName, (double) value);
     }
 
-    public static void set(JsObject object, double index, long value) {
-        set(object, index, (double) value);
+    public static long set(JsObject object, double index, long value) {
+        return (long) set(object, index, (double) value);
     }
 
 
@@ -70,7 +70,7 @@ public class Js {
         return object[index];
     }-*/;
 
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
     public static native $primitiveType get${display.capitalize($primitiveType)}(JsObject object, String propertyName) /*-{
         return object[propertyName];
     }-*/;
@@ -79,7 +79,7 @@ public class Js {
         return object[index];
     }-*/;
 
-    #end
+#end
 
     public static long getLong(JsObject object, String propertyName) {
         return (long) getDouble(object, propertyName);
@@ -97,12 +97,12 @@ public class Js {
         return index in object;
     }-*/;
 
-    public static native <T> void delete(JsObject<T> object, String propertyName) /*-{
-        delete object[propertyName];
+    public static native <T> boolean delete(JsObject<T> object, String propertyName) /*-{
+        return delete object[propertyName];
     }-*/;
 
-    public static native <T> void delete(JsObject<T> object, double index) /*-{
-        delete object[index];
+    public static native <T> boolean delete(JsObject<T> object, double index) /*-{
+        return delete object[index];
     }-*/;
 
     public static native boolean isTrue(Object object)/*-{
@@ -131,6 +131,14 @@ public class Js {
 
     public static native boolean isUndefined(JsObject object, double index) /*-{
         return object[index] === undefined;
+    }-*/;
+
+    public static native void call(JsObject object, Object value) /*-{
+        object(value);
+    }-*/;
+
+    public static native void call(JsObject object, double value) /*-{
+        object(value);
     }-*/;
 
 }

@@ -45,11 +45,11 @@
     static JsObject assign(JsObject target, JsObject... sources);
     static JsObject create(JsObject proto, optional JsObject propertiesObject);
     [GenericReturn] JsObject defineProperties([GenericSub(T)] JsObject obj, [GenericParameter(ObjectPropertyDescriptor)] JsObject properties);
-    [GenericReturn] static JsObject defineProperty([GenericSub(T)] JsObject obj, String propertyName, [GenericParameter(?)]ObjectPropertyDescriptor descriptor);
+    [GenericReturn] static JsObject defineProperty([GenericSub(T)] JsObject obj, String propertyName, [GenericParameter(U)]ObjectPropertyDescriptor descriptor);
     static sequence<sequence<any>> entries(JsObject obj);
     [GenericReturn] static JsObject freeze([GenericSub(T)] JsObject obj);
-    [GenericParameter(?)] static ObjectPropertyDescriptor getOwnPropertyDescriptor(JsObject obj, String propertyName);
-    [GenericParameter(ObjectPropertyDescriptor<?>)] static JsObject getOwnPropertyDescriptors(JsObject obj);
+    [GenericParameter(U)] static ObjectPropertyDescriptor getOwnPropertyDescriptor(JsObject obj, String propertyName);
+    [GenericParameter(ObjectPropertyDescriptor)] static JsObject getOwnPropertyDescriptors(JsObject obj);
     static sequence<String> getOwnPropertyNames(JsObject obj);
     static sequence<Object> getOwnPropertySymbols(JsObject obj);
     static JsObject getPrototypeOf(JsObject obj);
@@ -71,8 +71,8 @@
 
     void __defineGetter__(String propertyName, ObjectPropertyGetterFunction func);
     void __defineSetter__(String propertyName, ObjectPropertySetterFunction func);
-    [GenericParameter(?)] ObjectPropertyGetterFunction __lookupGetter__(String propertyName);
-    [GenericParameter(?)] ObjectPropertySetterFunction __lookupSetter__(String propertyName);
+    [GenericParameter(U)] ObjectPropertyGetterFunction __lookupGetter__(String propertyName);
+    [GenericParameter(U)] ObjectPropertySetterFunction __lookupSetter__(String propertyName);
     boolean hasOwnProperty(String propertyName);
     boolean isPrototypeOf(JsObject obj);
     boolean propertyIsEnumerable(String propertyName);

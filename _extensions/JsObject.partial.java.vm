@@ -58,7 +58,7 @@ partial class JsObject {
     public final void set(double index, T value) {
         Js.<T>set(this, index, value);
     }
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
     @JsOverlay
     public final void set(String propertyName, $primitiveType value) {
@@ -69,7 +69,7 @@ partial class JsObject {
     public final void set(double index, $primitiveType value) {
         Js.<T>set(this, index, value);
     }
-    #end
+#end
 
     @JsOverlay
     public final void set(String propertyName, long value) {
@@ -105,13 +105,13 @@ partial class JsObject {
     public final JsObject<T> with(String propertyName, T value) {
         return Js.<T>with(this, propertyName, value);
     }
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
     @JsOverlay
     public final JsObject<T> with(String propertyName, $primitiveType value) {
         return Js.<T>with(this, propertyName, value);
     }
-    #end
+#end
 
     @JsOverlay
     public final JsObject<T> with(String propertyName, long value) {
