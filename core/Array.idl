@@ -15,8 +15,34 @@
  * the License.
  */
 
-[GenericParameter(T,U)]
-callback interface MapFunction{
+[
+    GenericParameter(T)
+] dictionary IteratorValue{
+    T value;
+    boolean done;
+};
+
+[
+    GenericParameter(K, T),
+    GenericExtend(Array)
+] dictionary EntryIteratorValue: IteratorValue {
+};
+
+[
+    GenericParameter(T),
+    GenericExtend(Integer, T)
+] dictionary ArrayEntryIteratorValue: EntryIteratorValue{
+};
+
+[
+    GenericParameter(T extends IteratorValue<V>, V)
+] interface Iterator{
+    [GenericType(T)] T next();
+};
+
+[
+    GenericParameter(T,U)
+] callback interface MapFunction{
     U map(T arg);
 };
 
@@ -34,7 +60,7 @@ callback interface MapFunction{
 
 [
     GenericParameter(T, U)
-]callback interface MappingFunction{
+] callback interface MappingFunction{
     [GenericSub(U)] any map([GenericSub(T)] any element, long index, Array array);
 };
 
@@ -59,7 +85,7 @@ callback interface MapFunction{
     [GenericParameter(T)] static  Array of(Object... value);
     [GenericParameter(T)] Array concat( [GenericSub(T)] Object... value);
     [GenericParameter(T)] Array copyWithin(long target, optional long start, optional long end);
-    //TODO entries
+    [GenericParameter(ArrayEntryIteratorValue<T>, Array)] Iterator entries();
     boolean every([GenericParameter(T)] PredicateFunction callback, optional Object thisArg);
     Array fill([GenericSub(T)] Object value, optional long start, optional long end);
     Array filter([GenericParameter(T)] PredicateFunction predicate, optional Object thisArg);
@@ -69,7 +95,7 @@ callback interface MapFunction{
     boolean includes([GenericSub(T)] Object value, optional long fromIndex);
     long indexOf([GenericSub(T)] Object value, optional long fromIndex);
     String join(optional String separator);
-    //TODO keys
+    [GenericParameter(IteratorValue<Integer>, Integer)] Iterator keys();
     double lastIndexOf([GenericSub(T)] Object value, optional long fromIndex);
     [GenericParameter(U)]Array map([GenericParameter(T,U)] MappingFunction mappingFunction, optional Object thisArg);
     any pop();
@@ -86,7 +112,7 @@ callback interface MapFunction{
     String toSource();
     String toString();
     long unshift([GenericSub(T)] Object... value);
-    ValueIterator values();
+    [GenericParameter(IteratorValue<T>, T)] Iterator values();
     [GenericSub(T)] getter Object (long index);
     setter void (long index, [GenericSub(T)] Object value);
 };
