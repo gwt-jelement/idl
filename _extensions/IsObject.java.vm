@@ -22,7 +22,7 @@ import jsinterop.annotations.JsType;
 @JsType(isNative = true)
 public class IsObject {
     @JsOverlay
-    public final JsObject object() {
+    public final <T> JsObject<T> object() {
         return Js.cast(this);
     }
 }
