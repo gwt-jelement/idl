@@ -45,7 +45,7 @@ public interface Any {
 
 #end
     @JsOverlay
-    default <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+    default <T> AnyHandler asObject(Consumer<T> objectConsumer) {
         return new DefaultAnyHandler(this).asObject(objectConsumer);
     }
 
@@ -91,7 +91,7 @@ public interface Any {
         }
 
         @Override
-        public <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+        public <T> AnyHandler asObject(Consumer<T> objectConsumer) {
             return dispatchIf(Js.TYPE_OBJECT, objectConsumer);
         }
 
@@ -150,7 +150,7 @@ public interface Any {
     class CompletedAnyHandler implements AnyHandler {
 
         @Override
-        public <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+        public <T> AnyHandler asObject(Consumer<T> objectConsumer) {
             return this;
         }
 

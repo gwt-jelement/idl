@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.function.Consumer;
 
 public interface AnyHandler {
-    <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer);
+    <T> AnyHandler asObject(Consumer<T> objectConsumer);
 
     <T> AnyHandler asArray(Consumer<Array<T>> consumer);
 
