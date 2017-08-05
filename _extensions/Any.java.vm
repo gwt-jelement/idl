@@ -1,0 +1,189 @@
+/*
+* Copyright 2017 Abed Tony BenBrahim <tony.benrahim@10xdev.com>
+*     and Gwt-JElement project contributors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License"); you may not
+* use this file except in compliance with the License. You may obtain a copy of
+* the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations under
+* the License.
+*/
+package ${basePackage}.core;
+
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsDate;
+import com.google.gwt.user.client.Command;
+
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+
+import java.util.Date;
+import java.util.function.Consumer;
+## FIXME add "RegExp","Error", "Symbol" ##
+## Manual Types are Object, Array , Promise, Date
+#set($GEN_TYPES = [
+    "String", "Number", "Boolean", "Function",
+    "ArrayBuffer", "Int8Array", "Uint8Array", "Uint8ClampedArray", "Int16Array", "Uint16Array",
+    "Int32Array", "Uint32Array", "Float32Array", "Float64Array" ])##
+#set($OF_TYPES = ["double", "float","long","int","short", "byte", "char", "boolean", "Object"])##
+
+@JsType(isNative = true, name = "*", namespace = JsPackage.GLOBAL)
+public interface Any {
+
+#foreach($type in $OF_TYPES)
+    @JsOverlay
+    public static Any of($type value) {
+        return Js.cast(value);
+    }
+
+#end
+    @JsOverlay
+    default <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+        return new DefaultAnyHandler(this).asObject(objectConsumer);
+    }
+
+    @JsOverlay
+    default <T> AnyHandler asArray(Consumer<Array<T>> consumer) {
+        return new DefaultAnyHandler(this).asArray(consumer);
+    }
+
+    @JsOverlay
+    default <T> AnyHandler asPromise(Consumer<Promise<T>> consumer) {
+        return new DefaultAnyHandler(this).asPromise(consumer);
+    }
+
+    @JsOverlay
+    default AnyHandler asDate(Consumer<Date> consumer) {
+        return new DefaultAnyHandler(this).asDate(consumer);
+    }
+
+#foreach($type in $GEN_TYPES)##
+    @JsOverlay
+    default AnyHandler as$type(Consumer<$type> consumer) {
+        return new DefaultAnyHandler(this).as$type(consumer);
+    }
+
+#end##
+
+    @JsOverlay
+    default AnyHandler ifNullOrUndefined(Command command) {
+        return new DefaultAnyHandler(this).ifNullOrUndefined(command);
+    }
+
+    @JsOverlay
+    default void otherwise(Consumer<Any> consumer) {
+        new DefaultAnyHandler(this).otherwise(consumer);
+    }
+
+    class DefaultAnyHandler implements AnyHandler {
+
+        private Any anyValue;
+
+        DefaultAnyHandler(Any anyValue) {
+            this.anyValue = anyValue;
+        }
+
+        @Override
+        public <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+            return dispatchIf(Js.TYPE_OBJECT, objectConsumer);
+        }
+
+        @Override
+        public <T> AnyHandler asArray(Consumer<Array<T>> consumer) {
+            return dispatchIf(Js.TYPE_ARRAY, consumer);
+        }
+
+        @Override
+        public <T> AnyHandler asPromise(Consumer<Promise<T>> consumer) {
+            return dispatchIf(Js.TYPE_PROMISE, consumer);
+        }
+
+        @Override
+        public AnyHandler asDate(Consumer<Date> consumer) {
+            if (Js.isTypeName(anyValue, Js.TYPE_DATE)) {
+                JsDate date = Js.cast(anyValue);
+                consumer.accept(new Date((long) date.getTime()));
+                return new CompletedAnyHandler();
+            }
+            return this;
+        }
+
+#foreach($type in $GEN_TYPES)##
+        @Override
+        public AnyHandler as$type(Consumer<$type> consumer) {
+            return dispatchIf("$type", consumer);
+        }
+
+#end##
+        @Override
+        public AnyHandler ifNullOrUndefined(Command command) {
+            if (anyValue == null){
+                command.execute();
+                return new CompletedAnyHandler();
+            }
+            return this;
+        }
+
+        @Override
+        public void otherwise(Consumer<Any> consumer) {
+            consumer.accept(anyValue);
+        }
+
+        @SuppressWarnings("unchecked")
+        private <T> AnyHandler dispatchIf(String typeName, Consumer<T> consumer) {
+            if (Js.isTypeName(anyValue, typeName)) {
+                consumer.accept((T) anyValue);
+                return new CompletedAnyHandler();
+            }
+            return this;
+        }
+
+    }
+
+    class CompletedAnyHandler implements AnyHandler {
+
+        @Override
+        public <T extends JavaScriptObject> AnyHandler asObject(Consumer<T> objectConsumer) {
+            return this;
+        }
+
+        @Override
+        public <T> AnyHandler asArray(Consumer<Array<T>> consumer) {
+            return this;
+        }
+
+        @Override
+        public <T> AnyHandler asPromise(Consumer<Promise<T>> consumer) {
+            return this;
+        }
+
+        @Override
+        public AnyHandler asDate(Consumer<Date> consumer) {
+            return this;
+        }
+
+#foreach($type in $GEN_TYPES)##
+        @Override
+        public AnyHandler as$type(Consumer<$type> consumer) {
+            return this;
+        }
+
+#end##
+        @Override
+        public AnyHandler ifNullOrUndefined(Command command) {
+            return this;
+        }
+
+        @Override
+        public void otherwise(Consumer<Any> consumer) {
+            // no implementation
+        }
+    }
+}

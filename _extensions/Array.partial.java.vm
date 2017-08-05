@@ -17,13 +17,13 @@
 import Js;
 
 partial class Array {
-    #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
     @JsOverlay
     public final $primitiveType get${display.capitalize($primitiveType)}(double index) {
         return Js.get${display.capitalize($primitiveType)}(this.object(), index);
     }
-    #end
+#end
 
     @JsOverlay
     public final long getLong(double index) {
@@ -34,7 +34,7 @@ partial class Array {
 
     @JsOverlay
     public final void set(double index, $primitiveType value) {
-        Js.<T>set(this.object(), index, value);
+        Js.set(this.object(), index, value);
     }
 #end
 

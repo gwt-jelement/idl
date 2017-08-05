@@ -51,23 +51,23 @@ partial class JsObject {
 
     @JsOverlay
     public final void set(String propertyName, T value) {
-        Js.<T>set(this, propertyName, value);
+        Js.set(this, propertyName, value);
     }
 
     @JsOverlay
     public final void set(double index, T value) {
-        Js.<T>set(this, index, value);
+        Js.set(this, index, value);
     }
 #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
     @JsOverlay
     public final void set(String propertyName, $primitiveType value) {
-        Js.<T>set(this, propertyName, value);
+        Js.set(this, propertyName, value);
     }
 
     @JsOverlay
     public final void set(double index, $primitiveType value) {
-        Js.<T>set(this, index, value);
+        Js.set(this, index, value);
     }
 #end
 
@@ -83,39 +83,39 @@ partial class JsObject {
 
     @JsOverlay
     public final void delete(String propertyName) {
-        Js.<T>delete(this, propertyName);
+        Js.delete(this, propertyName);
     }
 
     @JsOverlay
     public final void delete(double index) {
-        Js.<T>delete(this, index);
+        Js.delete(this, index);
     }
 
     @JsOverlay
     public final boolean has(String propertyName) {
-        return Js.<T>has(this, propertyName);
+        return Js.has(this, propertyName);
     }
 
     @JsOverlay
     public final boolean has(double index) {
-        return Js.<T>has(this, index);
+        return Js.has(this, index);
     }
 
     @JsOverlay
     public final JsObject<T> with(String propertyName, T value) {
-        return Js.<T>with(this, propertyName, value);
+        return Js.with(this, propertyName, value);
     }
 #foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})##
 
     @JsOverlay
     public final JsObject<T> with(String propertyName, $primitiveType value) {
-        return Js.<T>with(this, propertyName, value);
+        return Js.with(this, propertyName, value);
     }
 #end
 
     @JsOverlay
     public final JsObject<T> with(String propertyName, long value) {
-        return Js.<T>with(this, propertyName, (double) value);
+        return Js.with(this, propertyName, (double) value);
     }
 
     @JsOverlay

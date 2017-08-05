@@ -18,11 +18,11 @@
 [Constructor(),
  Constructor(long value),
  Constructor(DOMString dateString),
- Constructor(any year, any month, optional any date, optional any hours, optional any minutes, optional any seconds, optional any milliseconds)]
+ Constructor(int year, int month, optional int date, optional int hours, optional int minutes, optional int seconds, optional int milliseconds)]
 interface Date{
     static long now();
     static Date parse(DOMString dateString);
-    static long UTC(any year, any month, optional any date, optional any hours, optional any minutes, optional any seconds, optional any milliseconds);
+    static long UTC(int year, int month, optional int date, optional int hours, optional int minutes, optional int seconds, optional int milliseconds);
     int getDate();
     int getDay();
     int getFullYear();

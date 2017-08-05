@@ -10,7 +10,7 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * WARRANTIES OR CONDITIONS OF object KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
@@ -19,22 +19,22 @@
 
 interface Console {
   // Logging
-  void assert(optional boolean condition = false, any... data);
+  void assert(optional boolean condition = false, object... data);
   void clear();
   void count(optional DOMString label = "default");
-  void debug(any... data);
-  void error(any... data);
-  void info(any... data);
-  void log(any... data);
-  void table(any tabularData, optional sequence<DOMString> properties);
-  void trace(any... data);
-  void warn(any... data);
-  void dir(any item, optional object? options);
-  void dirxml(any... data);
+  void debug(object... data);
+  void error(object... data);
+  void info(object... data);
+  void log(object... data);
+  void table(object tabularData, optional sequence<DOMString> properties);
+  void trace(object... data);
+  void warn(object... data);
+  void dir(object item, optional object? options);
+  void dirxml(object... data);
 
   // Grouping
-  void group(any... data);
-  void groupCollapsed(any... data);
+  void group(object... data);
+  void groupCollapsed(object... data);
   void groupEnd();
 
   // Timing

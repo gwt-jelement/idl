@@ -89,7 +89,7 @@
     [Measure] long requestIdleCallback(IdleRequestCallback callback, optional IdleRequestOptions options);
     void cancelIdleCallback(long handle);
 
-    [CrossOrigin, Custom, RaisesException] void postMessage(any message, DOMString targetOrigin, optional sequence<Transferable> transfer);
+    [CrossOrigin, Custom, RaisesException] void postMessage(object message, DOMString targetOrigin, optional sequence<Transferable> transfer);
 
     // Custom elements
     // https://w3c.github.io/webcomponents/spec/custom/#custom-elements-api

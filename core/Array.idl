@@ -49,35 +49,37 @@
 [
     GenericParameter(T)
 ] callback interface PredicateFunction{
-    boolean test([GenericSub(T)] Object element, long index, [GenericParameter(T)] Array array); //REVISIT any
+    boolean test([GenericSub(T)] Object element, long index, [GenericParameter(T)] Array array);
 };
 
 [
     GenericParameter(T)
 ] callback interface ArrayProc{
-    void invoke([GenericSub(T)] any element, long index, [GenericParameter(T)] Array array); //REVISIT any
+    void invoke([GenericSub(T)] object element, long index, [GenericParameter(T)] Array array);
 };
 
 [
     GenericParameter(T, U)
 ] callback interface MappingFunction{
-    [GenericSub(U)] any map([GenericSub(T)] any element, long index, Array array);
+    [GenericSub(U)] object map([GenericSub(T)] object element, long index, Array array);
 };
 
 [
     GenericParameter(T, U)
 ] callback interface ReducingFunction{
-    [GenericSub(U)] any reduce([GenericSub(U)] any accumulator, [GenericSub(T)] any currentValue, long currentIndex, [GenericParameter(T)] Array array);
+    [GenericSub(U)] object reduce([GenericSub(U)] object accumulator, [GenericSub(T)] object currentValue, long currentIndex, [GenericParameter(T)] Array array);
 };
 
 [
     GenericParameter(T)
 ] callback interface CompareFunction{
-    long compare([GenericSub(T)] any a, [GenericSub(T)] any b);
+    long compare([GenericSub(T)] object a, [GenericSub(T)] object b);
 };
 
 [
-    GenericParameter(T)
+    GenericParameter(T),
+    Constructor(),
+    Constructor([GenericSub(T)] Object... value)
 ]interface Array {
     readonly attribute long length;
     [GenericParameter(U)] static  Array from([GenericParameter(T)] ArrayLike arrayLike, [GenericParameter(T,U)] optional MapFunction mapFunction, optional Object thisArg);
@@ -98,12 +100,12 @@
     [GenericParameter(IteratorValue<Integer>, Integer)] Iterator keys();
     double lastIndexOf([GenericSub(T)] Object value, optional long fromIndex);
     [GenericParameter(U)]Array map([GenericParameter(T,U)] MappingFunction mappingFunction, optional Object thisArg);
-    any pop();
+    object pop();
     double push([GenericSub(T)] Object... value);
-    [GenericSub(U)] any reduce([GenericParameter(T,U)]ReducingFunction reducingFunction, optional any initialValue);
-    [GenericSub(U)] any reduceRight([GenericParameter(T,U)] ReducingFunction reducingFunction, optional any initialValue);
+    [GenericSub(U)] object reduce([GenericParameter(T,U)]ReducingFunction reducingFunction, optional object initialValue);
+    [GenericSub(U)] object reduceRight([GenericParameter(T,U)] ReducingFunction reducingFunction, optional object initialValue);
     Array reverse();
-    any shift();
+    object shift();
     Array slice(optional long start, optional long end);
     boolean some([GenericParameter(T)]PredicateFunction predicate, optional Object thisArg);
     Array sort([GenericParameter(T)] optional CompareFunction compareFunction);

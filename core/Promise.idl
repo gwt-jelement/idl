@@ -34,7 +34,7 @@ callback interface ResolveFunction{
 };
 
 callback interface RejectFunction{
-    void with(any value);
+    void with(object value);
 };
 
 [GenericParameter(T)]
@@ -42,23 +42,28 @@ callback interface PromiseExecutor{
     void execute([GenericParameter(T)] ResolveFunction resolve, RejectFunction reject);
  };
 
-callback AnyCallback = any (any value);
+callback Callback = object (object value);
 
 [GenericParameter(T)]
 callback interface FullfilCallback{
-    any fullfilled(T value);
+    object fullfilled(T value);
+};
+
+[
+    GenericParameter(T)
+] interface Thenable {
+    [GenericParameter(T)] Promise then([GenericParameter(T)] optional FullfilCallback fulfillCallback, optional AnyCallback rejectCallback);
 };
 
 [
    GlobalContext=Window&WorkerGlobalScope,
    CustomConstructor([GenericParameter(T)] PromiseExecutor executor),
-   GenericParameter(T)
-] interface Promise {
-   [GenericParameter(T)] Promise then([GenericParameter(T)] optional FullfilCallback fulfillCallback, optional AnyCallback rejectCallback);
+   GenericParameter(T),
+   GenericExtend(T)
+] interface Promise: Thenable {
    [GenericParameter(T)] Promise catch(optional AnyCallback rejectCallback);
-   [GenericParameter(T)] static Promise resolve(T value);
-   static Promise reject(any value);
-   [GenericParameter(T)]static Promise cast(T value);
-   static Promise race(any iterable);
-   static Promise every(any... values);
+   [GenericParameter(U)] static Promise all([GenericParameter(? extends U)] Promise... promises);
+   [GenericParameter(U)] static Promise race([GenericParameter(? extends U)] Promise... promises);
+   [GenericParameter(U)] static Promise reject(object value);
+   [GenericParameter(U)] static Promise resolve([GenericParameter(U)] Thenable  value);
 };
