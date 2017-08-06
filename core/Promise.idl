@@ -42,7 +42,7 @@ callback interface PromiseExecutor{
     void execute([GenericParameter(T)] ResolveFunction resolve, RejectFunction reject);
  };
 
-callback Callback = object (object value);
+callback PromiseRejectCallback = object (object value);
 
 [GenericParameter(T)]
 callback interface FullfilCallback{
@@ -52,7 +52,7 @@ callback interface FullfilCallback{
 [
     GenericParameter(T)
 ] interface Thenable {
-    [GenericParameter(T)] Promise then([GenericParameter(T)] optional FullfilCallback fulfillCallback, optional AnyCallback rejectCallback);
+    [GenericParameter(T)] Promise then([GenericParameter(T)] optional FullfilCallback fulfillCallback, optional PromiseRejectCallback rejectCallback);
 };
 
 [
@@ -61,7 +61,7 @@ callback interface FullfilCallback{
    GenericParameter(T),
    GenericExtend(T)
 ] interface Promise: Thenable {
-   [GenericParameter(T)] Promise catch(optional AnyCallback rejectCallback);
+   [GenericParameter(T)] Promise catch(optional PromiseRejectCallback rejectCallback);
    [GenericParameter(U)] static Promise all([GenericParameter(? extends U)] Promise... promises);
    [GenericParameter(U)] static Promise race([GenericParameter(? extends U)] Promise... promises);
    [GenericParameter(U)] static Promise reject(object value);

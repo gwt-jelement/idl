@@ -22,9 +22,6 @@
     "Int32Array", "Uint32Array", "Float32Array", "Float64Array" ])##
 package ${basePackage}.core;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Command;
-
 import java.util.Date;
 import java.util.function.Consumer;
 
@@ -39,7 +36,7 @@ public interface AnyHandler {
     AnyHandler as$type(Consumer<$type> consumer);
 
 #end##
-    AnyHandler ifNullOrUndefined(Command command);
+    AnyHandler ifNullOrUndefined(Consumer<Void> callback);
 
     void otherwise(Consumer<Any> consumer);
 }
