@@ -35,7 +35,7 @@ public interface Any {
 #foreach($type in $OF_TYPES)
     @JsOverlay
     public static Any of($type value) {
-        return Js.cast(value);
+        return Js.castToAny(value);
     }
 
 #end

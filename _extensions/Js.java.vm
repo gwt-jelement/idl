@@ -177,5 +177,19 @@ public class Js {
         return Symbol();
     }-*/;
 
+    public static native Any castToAny(Object value) /*-{
+        return value;
+    }-*/;
+
+#foreach($primitiveType in ${GWT_PRIMITIVE_TYPES})
+    public static native Any castToAny($primitiveType value) /*-{
+        return value;
+    }-*/;
+
+#end
+    public static final Any castToAny(long value) {
+        return castToAny((double) value);
+    }
+
 }
 
