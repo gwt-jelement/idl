@@ -20,7 +20,7 @@ callback interface CallbackFunction{
 
 [ Constructor(String functionBody),
   Constructor(String args, String functionBody)]
-interface Function: IsObject{
+interface Function {
     static attribute Function caller;
     static attribute String displayName;
     static attribute int length;
